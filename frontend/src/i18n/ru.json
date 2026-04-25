@@ -1,0 +1,296 @@
+{
+  "common": {
+    "loading": "Загрузка...",
+    "save": "Сохранить",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "edit": "Редактировать",
+    "create": "Создать",
+    "submit": "Отправить",
+    "back": "Назад",
+    "next": "Далее",
+    "search": "Поиск",
+    "filter": "Фильтр",
+    "all": "Все",
+    "page": "стр",
+    "none": "Нет",
+    "yes": "Да",
+    "no": "Нет",
+    "close": "Закрыть",
+    "confirm": "Подтвердить",
+    "success": "Успешно",
+    "error": "Ошибка",
+    "retry": "Повторить",
+    "logout": "Выйти",
+    "language": "Язык",
+    "copied": "Скопировано"
+  },
+  "app": {
+    "title": "CAREER AI",
+    "tagline": "Умный найм с AI"
+  },
+  "nav": {
+    "dashboard": "Панель",
+    "vacancies": "Вакансии",
+    "applications": "Заявки",
+    "applicants": "Кандидаты",
+    "notifications": "Уведомления",
+    "profile": "Профиль",
+    "settings": "Настройки"
+  },
+  "auth": {
+    "loginTitle": "Вход в аккаунт",
+    "loginSubtitle": "Введите данные для входа в панель CAREER AI",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "login": "Войти",
+    "loggingIn": "Вход...",
+    "loginFailed": "Ошибка входа",
+    "invalidCredentials": "Неверное имя пользователя или пароль"
+  },
+  "dashboard": {
+    "welcome": "Добро пожаловать",
+    "totalApplications": "Всего заявок",
+    "averageScore": "Средний балл",
+    "activeVacancies": "Активные вакансии",
+    "interviewSuccessRate": "Успешность интервью",
+    "byStatus": "По статусам",
+    "byMonth": "Динамика по месяцам",
+    "topVacancies": "Популярные вакансии"
+  },
+  "vacancy": {
+    "title": "Должность",
+    "description": "Описание",
+    "requirements": "Требования",
+    "responsibilities": "Обязанности",
+    "workType": "Тип работы",
+    "workSchedule": "График работы",
+    "location": "Локация",
+    "salary": "Зарплата",
+    "salaryFrom": "От",
+    "salaryTo": "До",
+    "experience": "Опыт",
+    "years": "лет",
+    "months": "мес.",
+    "minMatchScore": "Минимальный балл соответствия",
+    "status": "Статус",
+    "create": "Новая вакансия",
+    "edit": "Редактировать вакансию",
+    "empty": "Пока нет вакансий",
+    "shareLink": "Ссылка для шаринга",
+    "views": "Просмотры",
+    "applicationsCount": "Заявки",
+    "workTypes": {
+      "remote": "Удалённо",
+      "office": "В офисе",
+      "hybrid": "Гибрид"
+    },
+    "schedules": {
+      "full-time": "Полный день",
+      "part-time": "Неполный день",
+      "contract": "Контракт"
+    },
+    "statuses": {
+      "active": "Активна",
+      "archived": "Архивирована"
+    }
+  },
+  "application": {
+    "fullName": "Полное имя",
+    "phone": "Телефон",
+    "age": "Возраст",
+    "address": "Адрес",
+    "telegramUsername": "Telegram username",
+    "telegramUsernameHint": "Для быстрой связи с вами (необязательно)",
+    "resume": "Резюме",
+    "resumeFile": "Файл резюме",
+    "compatibilityScore": "Балл соответствия",
+    "interviewScore": "Балл интервью",
+    "appliedAt": "Дата подачи",
+    "status": "Статус",
+    "strengths": "Сильные стороны",
+    "weaknesses": "Слабые стороны",
+    "recommendations": "Рекомендации",
+    "aiAnalysis": "AI анализ",
+    "interviewSummary": "Итог",
+    "interviewTranscript": "Транскрипт",
+    "statusHistory": "Статусы",
+    "statusHistoryEmpty": "Эта заявка старая, история недоступна. Для новых заявок все изменения статуса сохраняются автоматически.",
+    "rawResumeText": "Исходный текст резюме",
+    "structured": {
+      "summary": "Кратко",
+      "contact": "Контакты",
+      "experience": "Опыт работы",
+      "education": "Образование",
+      "skills": "Навыки",
+      "technical": "Профессиональные",
+      "soft": "Личные",
+      "languages": "Языки",
+      "certifications": "Сертификаты"
+    },
+    "filterByVacancy": "Фильтр по вакансии",
+    "allVacancies": "Все вакансии",
+    "empty": "Пока нет заявок",
+    "statuses": {
+      "pending": "Ожидает",
+      "ai_analyzing": "AI анализирует",
+      "rejected_resume": "Резюме отклонено",
+      "interview_stage": "Этап интервью",
+      "interview_abandoned": "Покинул",
+      "rejected_interview": "Интервью отклонено",
+      "talent_pool": "В базе резерва",
+      "accepted": "Принято",
+      "in_contact": "На связи",
+      "hired": "Нанят",
+      "admin_cancelled": "Отменено админом"
+    }
+  },
+  "interview": {
+    "startTitle": "Начать интервью",
+    "startDescription": "Адаптивный чат-интервью с AI. Отвечайте на вопросы полно и точно.",
+    "start": "Начать интервью",
+    "thinking": "Думаю...",
+    "yourAnswer": "Введите ваш ответ...",
+    "send": "Отправить",
+    "questionProgress": "Вопрос {{current}} / {{total}}",
+    "completed": "Интервью завершено",
+    "terminated": "Интервью остановлено",
+    "abandonedInactive": "Вы были неактивны 3 минуты — интервью остановлено",
+    "streamError": "Ошибка загрузки вопроса. Попробуйте снова.",
+    "retry": "Повторить",
+    "finalScore": "Итоговый балл: {{score}}",
+    "viewResult": "Посмотреть результат",
+    "finalize": "Завершить"
+  },
+  "apply": {
+    "title": "Подать заявку на вакансию",
+    "submit": "Отправить",
+    "submitting": "Отправка...",
+    "success": "Ваша заявка успешно отправлена",
+    "chooseMethod": "Выберите способ подачи заявки",
+    "uploadResume": "Загрузить резюме",
+    "fillForm": "Заполнить форму",
+    "orManual": "или",
+    "manualFormLink": "Нет резюме? Заполнить вручную →"
+  },
+  "resumeForm": {
+    "title": "Заполнить данные вручную",
+    "subtitle": "Если нет резюме — заполните эту форму",
+    "optional": "необязательно",
+    "add": "Добавить",
+    "item": "#",
+    "sectionPersonal": "Личные данные",
+    "sectionAbout": "О себе",
+    "sectionExperience": "Опыт работы",
+    "sectionEducation": "Образование",
+    "sectionSkills": "Навыки",
+    "sectionLanguages": "Языки",
+    "sectionExtras": "Дополнительно",
+    "summary": "Краткое описание",
+    "summaryHint": "2-3 предложения — что умеете, какой опыт",
+    "summaryPlaceholder": "Например: 3 года опыта в продажах, работа с клиентами, поиск покупателей по телефону...",
+    "experienceHint": "Добавьте прежние места работы — чем больше, тем лучше",
+    "position": "Должность",
+    "company": "Компания",
+    "duration": "Период (например: 2023–2024 или 1 год)",
+    "descriptionPlaceholder": "Чем занимались, каких результатов достигли?",
+    "institution": "Учебное заведение",
+    "degree": "Степень (например: Бакалавр)",
+    "fieldOfStudy": "Специальность",
+    "year": "Год",
+    "technicalSkills": "Профессиональные навыки",
+    "technicalSkillsPlaceholder": "Например: Продажи, 1C, Excel, Переговоры — через запятую",
+    "softSkills": "Личные качества",
+    "softSkillsPlaceholder": "Например: Коммуникация, Работа в команде, Решение проблем",
+    "skillsHint": "Через запятую или с новой строки",
+    "languageName": "Язык (например: Русский)",
+    "languageLevel": "Уровень (например: Свободно)",
+    "certifications": "Сертификаты",
+    "certificationsPlaceholder": "Например: PMP, IELTS 7.0 — через запятую",
+    "hobbies": "Увлечения",
+    "hobbiesPlaceholder": "Чем занимаетесь в свободное время?"
+  },
+  "applicants": {
+    "title": "Кандидаты",
+    "subtitle": "Всего {{count}} кандидатов",
+    "subtitleDetail": "Всего {{count}} заявок",
+    "searchPlaceholder": "Поиск по имени, телефону или Telegram",
+    "empty": "Кандидатов пока нет",
+    "notFound": "Кандидат не найден",
+    "lastVacancy": "Последняя вакансия",
+    "appsCount": "{{count}} заявок",
+    "personalInfo": "Личные данные",
+    "firstApplied": "Первая заявка",
+    "applicationsHistory": "История заявок",
+    "avgCompatibility": "Средний балл"
+  },
+  "myApplications": {
+    "title": "Здравствуйте, {{name}} 👋",
+    "subtitle": "Ваши заявки и их статус",
+    "empty": "Пока нет заявок",
+    "backToList": "Заявки",
+    "resumeReview": "Анализ резюме",
+    "interviewReview": "Итоги интервью",
+    "noResumeAnalysis": "Анализ недоступен",
+    "noInterview": "Интервью ещё не проводилось",
+    "outcome": {
+      "pending": {
+        "title": "Заявка принята",
+        "desc": "Скоро начнётся AI-анализ. Подождите немного."
+      },
+      "ai_analyzing": {
+        "title": "AI анализирует",
+        "desc": "Проверяем соответствие вашего резюме вакансии. Это займёт около 30 секунд."
+      },
+      "interview_stage": {
+        "title": "Вы перешли на этап интервью!",
+        "desc": "Резюме подошло. Войдите и перейдите на страницу 'Интервью'."
+      },
+      "interview_abandoned": {
+        "title": "Интервью не завершено",
+        "desc": "Вы были неактивны 3 минуты или вкладка была закрыта. Если это была ошибка — свяжитесь по контактам ниже."
+      },
+      "rejected_resume": {
+        "title": "К сожалению, резюме не подошло",
+        "desc": "Резюме не соответствует требованиям этой вакансии. Попробуйте другие вакансии или свяжитесь по контактам."
+      },
+      "rejected_interview": {
+        "title": "Интервью не пройдено",
+        "desc": "Вы не набрали достаточно баллов. Мы сохраним ваши данные — если появится подходящая вакансия, сообщим."
+      },
+      "talent_pool": {
+        "title": "Вы сохранены в нашей базе",
+        "desc": "Ваши данные в нашей базе резерва. Если появится подходящая вакансия — мы свяжемся."
+      },
+      "accepted": {
+        "title": "Поздравляем! Вы приняты 🎉",
+        "desc": "Вы успешно прошли интервью. HR скоро свяжется с вами."
+      },
+      "in_contact": {
+        "title": "HR пытается с вами связаться",
+        "desc": "Пожалуйста, следите за телефоном или Telegram. Мы свяжемся."
+      },
+      "hired": {
+        "title": "Вы приняты на работу! 🚀",
+        "desc": "Поздравляем с новой работой!"
+      },
+      "admin_cancelled": {
+        "title": "Заявка отменена",
+        "desc": "Администратор отменил заявку. Если есть вопросы — свяжитесь по контактам."
+      }
+    }
+  },
+  "contact": {
+    "title": "Связь с нами",
+    "description": "По вопросам и уточнениям используйте эти каналы связи",
+    "name": "Ответственный"
+  },
+  "landing": {
+    "hero": {
+      "title": "Умный найм с помощью AI",
+      "subtitle": "Автоматический анализ резюме, адаптивные чат-интервью и поиск лучших кандидатов.",
+      "cta": "Начать",
+      "demo": "Демо"
+    }
+  }
+}

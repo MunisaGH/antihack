@@ -1,0 +1,296 @@
+{
+  "common": {
+    "loading": "Yuklanmoqda...",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "edit": "Tahrirlash",
+    "create": "Yaratish",
+    "submit": "Yuborish",
+    "back": "Orqaga",
+    "next": "Keyingi",
+    "search": "Qidirish",
+    "filter": "Filtrlash",
+    "all": "Hammasi",
+    "page": "sahifa",
+    "none": "Yo'q",
+    "yes": "Ha",
+    "no": "Yo'q",
+    "close": "Yopish",
+    "confirm": "Tasdiqlash",
+    "success": "Muvaffaqiyatli",
+    "error": "Xato",
+    "retry": "Qayta urinish",
+    "logout": "Chiqish",
+    "language": "Til",
+    "copied": "Nusxalandi"
+  },
+  "app": {
+    "title": "CAREER AI",
+    "tagline": "AI bilan aqlli ishga qabul qilish"
+  },
+  "nav": {
+    "dashboard": "Boshqaruv paneli",
+    "vacancies": "Vakansiyalar",
+    "applications": "Arizalar",
+    "applicants": "Nomzodlar",
+    "notifications": "Bildirishnomalar",
+    "profile": "Profil",
+    "settings": "Sozlamalar"
+  },
+  "auth": {
+    "loginTitle": "Hisobga kirish",
+    "loginSubtitle": "CAREER AI panelingizga kirish uchun hisob ma'lumotlaringizni kiriting",
+    "username": "Username",
+    "password": "Parol",
+    "login": "Kirish",
+    "loggingIn": "Kirilmoqda...",
+    "loginFailed": "Kirish muvaffaqiyatsiz",
+    "invalidCredentials": "Username yoki parol noto'g'ri"
+  },
+  "dashboard": {
+    "welcome": "Xush kelibsiz",
+    "totalApplications": "Jami arizalar",
+    "averageScore": "O'rtacha ball",
+    "activeVacancies": "Faol vakansiyalar",
+    "interviewSuccessRate": "Intervyu muvaffaqiyat darajasi",
+    "byStatus": "Statuslar bo'yicha",
+    "byMonth": "Oylik dinamika",
+    "topVacancies": "Eng faol vakansiyalar"
+  },
+  "vacancy": {
+    "title": "Lavozim",
+    "description": "Tavsif",
+    "requirements": "Talablar",
+    "responsibilities": "Mas'uliyatlar",
+    "workType": "Ish turi",
+    "workSchedule": "Ish jadvali",
+    "location": "Joylashuv",
+    "salary": "Maosh",
+    "salaryFrom": "Dan",
+    "salaryTo": "Gacha",
+    "experience": "Tajriba",
+    "years": "yil",
+    "months": "oy",
+    "minMatchScore": "Minimal mos kelish bali",
+    "status": "Holat",
+    "create": "Yangi vakansiya",
+    "edit": "Vakansiyani tahrirlash",
+    "empty": "Hozircha vakansiyalar yo'q",
+    "shareLink": "Ulashish havolasi",
+    "views": "Ko'rishlar",
+    "applicationsCount": "Arizalar",
+    "workTypes": {
+      "remote": "Masofaviy",
+      "office": "Ofisda",
+      "hybrid": "Aralash"
+    },
+    "schedules": {
+      "full-time": "To'liq kunlik",
+      "part-time": "Yarim kunlik",
+      "contract": "Shartnoma"
+    },
+    "statuses": {
+      "active": "Faol",
+      "archived": "Arxivlangan"
+    }
+  },
+  "application": {
+    "fullName": "To'liq ism",
+    "phone": "Telefon",
+    "age": "Yosh",
+    "address": "Manzil",
+    "telegramUsername": "Telegram username",
+    "telegramUsernameHint": "Biz siz bilan tezroq bog'lanish uchun (ixtiyoriy)",
+    "resume": "Rezyume",
+    "resumeFile": "Rezyume fayli",
+    "compatibilityScore": "Moslik bali",
+    "interviewScore": "Intervyu bali",
+    "appliedAt": "Ariza berilgan sana",
+    "status": "Holat",
+    "strengths": "Kuchli tomonlari",
+    "weaknesses": "Zaif tomonlari",
+    "recommendations": "Tavsiyalar",
+    "aiAnalysis": "AI Tahlili",
+    "interviewSummary": "Xulosa",
+    "interviewTranscript": "Transkript",
+    "statusHistory": "Statuslar",
+    "statusHistoryEmpty": "Bu ariza eski bo'lgani uchun tarix mavjud emas. Yangi arizalarda barcha status o'zgarishlari avtomatik yozib boradi.",
+    "rawResumeText": "Xom rezyume matni",
+    "structured": {
+      "summary": "Qisqacha",
+      "contact": "Kontaktlar",
+      "experience": "Ish tajribasi",
+      "education": "Ta'lim",
+      "skills": "Ko'nikmalar",
+      "technical": "Kasbiy",
+      "soft": "Shaxsiy",
+      "languages": "Tillar",
+      "certifications": "Sertifikatlar"
+    },
+    "filterByVacancy": "Vakansiya bo'yicha filter",
+    "allVacancies": "Barcha vakansiyalar",
+    "empty": "Hozircha arizalar yo'q",
+    "statuses": {
+      "pending": "Kutilmoqda",
+      "ai_analyzing": "AI tahlil qilinmoqda",
+      "rejected_resume": "Rezyume rad qilindi",
+      "interview_stage": "Intervyu bosqichida",
+      "interview_abandoned": "Chiqib ketdi",
+      "rejected_interview": "Intervyu rad qilindi",
+      "talent_pool": "Baza sifatida saqlandi",
+      "accepted": "Qabul qilindi",
+      "in_contact": "Aloqada",
+      "hired": "Ishga qabul qilindi",
+      "admin_cancelled": "Admin bekor qildi"
+    }
+  },
+  "interview": {
+    "startTitle": "Intervyu boshlash",
+    "startDescription": "AI bilan adaptiv chat-intervyu. Savollarga to'liq va aniq javob bering.",
+    "start": "Intervyuni boshlash",
+    "thinking": "O'ylayapman...",
+    "yourAnswer": "Javobingizni yozing...",
+    "send": "Yuborish",
+    "questionProgress": "Savol {{current}} / {{total}}",
+    "completed": "Intervyu yakunlandi",
+    "terminated": "Intervyu to'xtatildi",
+    "abandonedInactive": "Siz 3 daqiqa harakatsiz edingiz — intervyu to'xtatildi",
+    "streamError": "Savolni yuklashda xatolik. Iltimos, qayta urinib ko'ring.",
+    "retry": "Qayta urinish",
+    "finalScore": "Yakuniy ball: {{score}}",
+    "finalize": "Yakunlash",
+    "viewResult": "Natijani ko'rish"
+  },
+  "apply": {
+    "title": "Vakansiyaga ariza berish",
+    "submit": "Yuborish",
+    "submitting": "Yuborilmoqda...",
+    "success": "Arizangiz muvaffaqiyatli yuborildi",
+    "chooseMethod": "Ariza berish usulini tanlang",
+    "uploadResume": "Rezyume yuklash",
+    "fillForm": "Formani to'ldirish",
+    "orManual": "yoki",
+    "manualFormLink": "Rezyume yo'q? Qo'lda to'ldirish →"
+  },
+  "resumeForm": {
+    "title": "Ma'lumotlarni qo'lda to'ldirish",
+    "subtitle": "Rezyume yo'q bo'lsa, shu formada ma'lumot kiriting",
+    "optional": "ixtiyoriy",
+    "add": "Qo'shish",
+    "item": "#",
+    "sectionPersonal": "Shaxsiy ma'lumot",
+    "sectionAbout": "O'zim haqimda",
+    "sectionExperience": "Ish tajribasi",
+    "sectionEducation": "Ta'lim",
+    "sectionSkills": "Ko'nikmalar",
+    "sectionLanguages": "Tillar",
+    "sectionExtras": "Qo'shimcha",
+    "summary": "Qisqacha ma'lumot",
+    "summaryHint": "2-3 gap — nimalar qila olasiz, qanday tajribalaringiz bor",
+    "summaryPlaceholder": "Misol: 3 yillik Sotuv menejer tajribasi, mijozlar bilan ishlash, telefon orqali xaridorlar topish...",
+    "experienceHint": "Oldingi ish joylaringizni qo'shing — qanchalik ko'p yozsangiz, shunchalik yaxshi",
+    "position": "Lavozim",
+    "company": "Kompaniya",
+    "duration": "Muddati (masalan: 2023–2024 yoki 1 yil)",
+    "descriptionPlaceholder": "Nima ishlar qilgansiz, qanday natijalarga erishgansiz?",
+    "institution": "O'quv muassasasi",
+    "degree": "Daraja (masalan: Bakalavr)",
+    "fieldOfStudy": "Yo'nalish",
+    "year": "Yili",
+    "technicalSkills": "Kasbiy ko'nikmalar",
+    "technicalSkillsPlaceholder": "Masalan: Savdo, 1C, Excel, Muzokara olib borish — vergul bilan ajrating",
+    "softSkills": "Shaxsiy ko'nikmalar",
+    "softSkillsPlaceholder": "Masalan: Kommunikatsiya, Jamoada ishlash, Muammolarni hal qilish",
+    "skillsHint": "Vergul yoki yangi qator bilan ajrating",
+    "languageName": "Til (masalan: O'zbek)",
+    "languageLevel": "Daraja (masalan: Yaxshi)",
+    "certifications": "Sertifikatlar",
+    "certificationsPlaceholder": "Masalan: PMP, IELTS 7.0 — vergul bilan ajrating",
+    "hobbies": "Qiziqishlar",
+    "hobbiesPlaceholder": "Nimalarga qiziqasiz bo'sh vaqtingizda?"
+  },
+  "applicants": {
+    "title": "Nomzodlar",
+    "subtitle": "Jami {{count}} nomzod",
+    "subtitleDetail": "Jami {{count}} ariza yuborgan",
+    "searchPlaceholder": "Ism, telefon yoki Telegram bo'yicha qidirish",
+    "empty": "Hozircha nomzodlar yo'q",
+    "notFound": "Nomzod topilmadi",
+    "lastVacancy": "Oxirgi vakansiya",
+    "appsCount": "{{count}} ariza",
+    "personalInfo": "Shaxsiy ma'lumot",
+    "firstApplied": "Birinchi ariza",
+    "applicationsHistory": "Arizalar tarixi",
+    "avgCompatibility": "O'rtacha moslik bali"
+  },
+  "myApplications": {
+    "title": "Salom, {{name}} 👋",
+    "subtitle": "Sizning arizalaringiz va ularning holati",
+    "empty": "Hali arizalaringiz yo'q",
+    "backToList": "Arizalar",
+    "resumeReview": "Rezyume tahlili",
+    "interviewReview": "Intervyu natijasi",
+    "noResumeAnalysis": "Tahlil mavjud emas",
+    "noInterview": "Intervyu hali o'tkazilmagan",
+    "outcome": {
+      "pending": {
+        "title": "Arizangiz qabul qilindi",
+        "desc": "Tez orada AI tahlili boshlanadi. Biroz kuting."
+      },
+      "ai_analyzing": {
+        "title": "AI tahlil qilmoqda",
+        "desc": "Rezyumengiz vakansiyaga mosligini tekshiryapti. 30 soniyaga yaqin vaqt oladi."
+      },
+      "interview_stage": {
+        "title": "Intervyu bosqichiga o'tdingiz!",
+        "desc": "Rezyumengiz mos kelindi. Intervyuni boshlash uchun login qiling va 'Intervyu' sahifasiga o'ting."
+      },
+      "interview_abandoned": {
+        "title": "Intervyu tugallanmadi",
+        "desc": "Siz 3 daqiqa harakatsiz qoldingiz yoki tab yopildi. Agar adashgan bo'lsangiz, pastdagi kontakt orqali murojaat qiling."
+      },
+      "rejected_resume": {
+        "title": "Afsuski, rezyume mos kelmadi",
+        "desc": "Rezyumengiz bu vakansiya talablariga yetarlicha mos kelmadi. Boshqa vakansiyalarga urinib ko'ring yoki pastdagi kontakt orqali bog'laning."
+      },
+      "rejected_interview": {
+        "title": "Intervyu o'tmagan",
+        "desc": "Bu vakansiyaga yetarli ball to'plamadingiz. Bizning bazamizda qolasiz — boshqa mos kelgan vakansiyaga e'tibor beramiz."
+      },
+      "talent_pool": {
+        "title": "Siz bazamizda saqlandingiz",
+        "desc": "Sizning ma'lumotlaringiz bazada. Keyinchalik sizga mos vakansiya chiqsa, biz siz bilan bog'lanamiz."
+      },
+      "accepted": {
+        "title": "Tabriklaymiz! Qabul qilindingiz 🎉",
+        "desc": "Siz intervyudan muvaffaqiyatli o'tdingiz. Tez orada HR siz bilan bog'lanadi."
+      },
+      "in_contact": {
+        "title": "HR siz bilan aloqa qilishga harakat qilmoqda",
+        "desc": "Iltimos, telefoningizni yoki Telegram'ni kuzatib turing. Biz siz bilan bog'lanamiz."
+      },
+      "hired": {
+        "title": "Siz ishga qabul qilindingiz! 🚀",
+        "desc": "Tabriklaymiz, qarorimiz sizga foyda bo'lsin!"
+      },
+      "admin_cancelled": {
+        "title": "Ariza bekor qilindi",
+        "desc": "Ma'muriyat tomonidan ariza bekor qilindi. Savollar bo'lsa — kontaktdan foydalaning."
+      }
+    }
+  },
+  "contact": {
+    "title": "Biz bilan bog'lanish",
+    "description": "Savollar yoki qo'shimcha ma'lumot uchun shu kanallar orqali bog'laning",
+    "name": "Mas'ul"
+  },
+  "landing": {
+    "hero": {
+      "title": "AI bilan aqlli ishga qabul qilish",
+      "subtitle": "Rezyumelarni avtomatik tahlil qiling, adaptiv chat-intervyular o'tkazing va eng yaxshi nomzodlarni toping.",
+      "cta": "Boshlash",
+      "demo": "Demo ko'rish"
+    }
+  }
+}
