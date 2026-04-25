@@ -7,6 +7,9 @@ import type {
 } from '@/types/api';
 
 export const interviewApi = {
+  getStatus: (applicationId: number) =>
+    api.get<{ success: boolean; data: any }>(`/public/application_status/${applicationId}/`).then((r) => r.data),
+
   start: (applicationId: number) =>
     api
       .post<StartInterviewResponse>('/public/interview/start/', { application_id: applicationId })
@@ -56,4 +59,15 @@ export const interviewApi = {
 
   streamNextQuestion: (applicationId: number, handlers: SseEventHandlers = {}) =>
     consumeSse(`${env.API_BASE_URL}/public/interview/stream/${applicationId}/`, handlers),
+
+  getPsychologicalQuestions: () =>
+    api.get<{ success: boolean; data: any[] }>('/public/interview/psychological-test/').then((r) => r.data),
+
+  submitPsychologicalTest: (applicationId: number, answers: Record<string, number>) =>
+    api
+      .post<{ success: boolean; data: any }>('/public/interview/psychological-test/submit/', {
+        application_id: applicationId,
+        answers,
+      })
+      .then((r) => r.data),
 };

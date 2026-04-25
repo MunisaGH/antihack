@@ -1,0 +1,222 @@
+MOBILE APP !
+
+Mobile install qilishadi (app store, google play)
+
+1) Kirganda birinchi bo'lib Productlar chiqib keladi (Uzum marketga o'xshab) bannerlar ham bo'lishi mumkin
+
+Navigation boladi: (loginsiz)
+    Home
+    Catalog (filter)
+    Cart
+    Orders (request va orderlari)
+    Login
+
+Home va Catalogdan tashqari qolgan pagelarda yozuv chiqadi. Siz hali tizimga kirmagansiz iltimos tizimga kiring deb. Button bo'ladi register va login 
+
+Navigation (login):
+    Home
+    Catalog
+    Cart
+    Orders (request va orderlari)
+    Profile
+
+Filter va sort qilish faqat Catalog pageda bo'ladi. Homeda shunchaki mahsulotlar chiqishi kerak
+
+Header (hozirgi figmadagidaqa qolsa yaxshi, faqat icon notificationdiki qo'yiladi)
+
+
+2)  Register step
+
+    role -->  buyer/seller(delaer/manifacturer)  -->  phone: +998***    -->    verification code: *** ***     -->     name, password, confirm password    --> Registration compleated
+
+3) Login step
+
+    phone and password  --> Login compleated
+
+4) Create or Join Company
+    
+    Join -->  Company Unique ID  --->   user joined member
+    Create --> Legacy name, Legacy address, Stir/INN, Bank rekvizit -- Bank name, Bank account, MFO -- accountant (bugxalter) - name, phone, telegram, Company Litsece(Mchj, AJ and etc.)   ------>     send moderation (approve/reject)  
+    
+    Agar user seller bo'lsa u qo'shimcha ravishda o'zi mahsulot oladigan zavodlarni ham kiritib ketadi. Misol uchun: NMZ, JMZ, ATMZ, Farg'ona Metallurgiya Zavodi. Shu tariqa. Bu ham moderatsiyadan o'tishi kerak bo'ladi
+
+    Bu jarayon qachonki umumiy companiya ma'lumotlari tasdiqlanmagunigachon davom etadi. 
+    Sababi xaridni amalga oshirish uchun marketplace adminlari tomonidan companiya va hujjatlari tasdiqlanishi kerak.
+    Agarda companiya hali tasdiqlanmagan bo'lsa user join qila olmaydi
+
+    ================
+    Companiya statuslari
+
+    moderatsiyaga yuborilgan  --> tasdiqlangan  /  rad etilgan (sababi bilan)  < -- qayta moderatsiyaga yuborilgan
+
+    ======================
+
+    TAHRIRLANGAN COMPANIYA MALUMOTLARI HAM MODERATSIYAGA YUBORILISHI SHART !!!
+
+-----------------------------------------------------------------------------------
+
+Shu yergachon buyer va seller role uchun aralash bo'ldi endi 2 lasini steplari alohida tushuntiriladi
+
+5) Seller Add Product
+
+    Product nomi
+    Product markasi (A400, A500 and etc.) bu bazi mahsulotlarda mavjud emas. Shu tomonlarini ham inobatga oling
+    Birlik: tonna, kilogram va h.k. Bu admin panelda 1 ta va 1 nechta belgilanadi va seller mahsulot qo'shvotganda 1 ta bo'lsa avtomatik 2 ta yoki undan ko'p bo'lsa choose chiqadi.
+    Nasiyaga beradimi. Seller o'zi tomonidan
+    Ishlab chiqarilgan Zavodi
+    Ishlab chiqarilgan davlati
+    Rasmlari bir nechta
+    Sertificatlari
+    Kategoriya va sub Kategoriya
+    Maximum yetkazib berish kuni ( 2 kun, 3 kun)
+
+    product variant 
+    - variant nomi (diamert, uzunlik, qalinlik va h.k.)
+    - variant min order qiymati (eng kamida qancha buyurtma qilish kerak)
+    - variant bank narxi
+    - variant cash narxi
+    - variant nasiya oylari soni (1 oy, 3, oy 6 oy)  "agar nasiya mavjud bo'lsa"
+    - variant nasiya narxi har bir oyga alohida  "agar nasiya mavjud bo'lsa"
+    - variant ombor qiymari
+
+    Agar mavjud bo'lsa texnik opisaniya
+
+    =============================
+    Product statuslari
+    moderatsiyaga yuborilgan  --> tasdiqlangan  /  rad etilgan (sababi bilan)  < -- qayta moderatsiyaga yuborilgan  | Tasdiqlangan - Mavjud emas 
+
+    SHU BILAN MAHSULOT YARATILADI VA MODERATSIYAGA YUBORILADI. TAHRIRLANGAN MAHSULOTLAR HAM MODERATSIYAGA YUBORILISHI SHART !!!
+    AGAR NASIYAGA SOTIB OLINADIGAN BO'LSA NASIYA NAZORATI VA KUZATUVI HAM BO'LISHI KERAK
+
+6) Request
+
+    Ovoz orqali, Rasm va File orqali, Oddiy poisk orqali tovarlar izlanadi va savatga joylanadi. 
+
+    Requestda:
+    Product va uning varianti
+    qiymati, to'lov turi, ( umumiy summa va bir miqdor uchun narxi to'lov turini tanlashiga qarab o'zgaradi)
+    Agar nasiya bo'lsa to'lov turida nasiya va tanlanganda muddatlari chiqishi kerak. Huddi uzum market kabi
+
+    Yetkazib berish kuni va manzili tanlanadi xaritadan. Xaritani ochganda avtomatik manzin gps orqali tanlanadi. Agar u bo'lsama o'zi boshqa joyni belgilashi ham mumkin
+    
+    sotuvchi bilan gaplashish uchun anonim chat ham bo'ladi. Va u chatda hamma cheklovlar bo'ladi. Faqatgina kunni va maxsulot moqdorini gaplashishi mumkin !!!
+
+    Request statulari:
+    - pending
+    - approved (qabul qilindi)
+    - offer (sotuvchi offer yuborgan (kam hollarda bo'ladi))
+    - rejected ( sababi bilan sotuvchi tomonidan)
+
+    Request hozircha 24 soat berilgan. Biz qilishimiz kerak. Hozirgi dizaynda orqaga sanaydigan timer ham bor. Bazilarida qachon qabul qilgan bo'lsa timer o'sha joyida to'xtaydi. Shu ham bo'lishi kerak
+
+7) Offer (kam hollarda)
+
+    Agar sotuvchiga yetkazish kuni, tovar miqdori, maqul kelmasa u buyer uchun offer yuboradi. Unda shu ma'lumotlar o'zgartirilgan bo'ladi. 
+    - yerkazish kuni
+    - tovar miqdori
+
+    statuslari:
+    - pending
+    - approved
+    - rejected (sababi bilan)
+
+    Keyinchalik offer bo'lmaydi. Sababi anonim chat orqali suhbat qilib kunni va miqdorni bilib oladi.
+
+8) Orderlar 
+
+    Orderni requestni to'g'ridan to'g'ri qabul qilish yoki Offerni qabul qilish orqali yaratish mumkin
+
+    Orderda request yoki offerdagi hamma ma'lumotlar bo'ladi. Uni statuslari biroz ko'proq
+
+    ORDER STATUSLARI (bank):
+    - uploading document    -seller
+    - awaiting payment      -seller
+    - buyer payed           -buyer
+    - payment comfirmed     -seller
+    - in preparation        -seller
+    - ready for delivery    -seller
+    - in transit            -seller
+    - delivered             -seller
+    - confirmed             -buyer
+    - compleated            -seller
+    
+    ORDER STATUSLARI (cash):
+    - in preparation        -seller
+    - ready for delivery    -seller
+    - in transit            -seller
+    - delivered             -seller
+    - confirmed             -buyer
+    - compleated            -seller
+
+
+    ORder ducuments:
+    - Contract (keyinchalik didox orqali avtomatik)     -seller
+    - Hisob faktura     -seller
+    - To'lov hujjati    -buyer
+    - TTN   -seller
+
+    Order status qachonki compleated bo'lgandan keyin to'lliq yopibdi hisoblanadi. 
+    Orderga review yani otziv qoldirish faqat confirmed va compleated statuslarida!!!
+
+
+9) Review, Congruation
+
+    Agar buyer uchun bu birinchi buyurtma bo'lsa yani oldin umuman buyurtma bermagan bo'lsa Uni buyurtmasi bilan tabriklash 
+    pagega o'tadi keyin u yerda faqatgina review qoldirish uchun button bo'ladi uni bosish orqali review qoldirishga kiradi
+
+    Agar buyer orderni confirmed yani yetib kelgan qilsa srazu review qoldirishga o'tadi. Yoki tabriklash pagega
+
+    Reviewda
+    - mahsulot sifati
+    - yetkazish tezligi
+    - marketplace qulayligi
+
+    Hozircha shularga baho qoldiradi. 
+
+    Bu baholar sellerda va mahsulotlarda ko'rinishi kerak bo'ladi
+
+
+10)  Notificatsiya tizimi
+
+    ro'yxatdan o'tish -sms
+    parol almashtirish -sms
+    buyurtma yaratilganda -sms sellerga
+    boshqa hozirgi notificatsiya - push apk ni o'zidan kelishi kerak !!!
+
+
+11)  Buyer Profile
+
+O'zini malumotlari 
+Va bo'limlar:
+
+    - promocodlar
+    - companiyam
+    - support chat  (Bu header yani eng tepa qismda ham icon bo'lishi kerak. yani support chatga yozmoqchi bo'lsa onson topishi kerak)
+    - team memberlari
+    - summery dashboardi. Statistikadi
+
+SELLERDA HAM DEYARLI SHUNDAY BO'LADI. PROMOCODEGA KELSAK
+
+Promocodeda type bor.  Marketpalce tomonidan |  Seller (id) tomonidan berilgan
+
+Marketplace tomonidan berilgan promocodelarga marketplace compensatsiya qiladi. Seller o'zi tomonidan berilgan promocodega compensatsiya qilinmaydi
+
+-------------------------------------------------------------
+
+MOBILE APP QISQACHA SHUNDAN IBORAT BO'LADI
+
+
+
+==============================================
+
+Sitega kirganda esa u yerda landing page bo'ladi
+
+biz haqimizda
+jamoamiz
+yutuqlarimiz
+mijozlar fikri
+mahsulotlarimiz
+biz bilan bog'lanish 
+
+
+shu kabi professional landing page bo'lshi kerak !!!

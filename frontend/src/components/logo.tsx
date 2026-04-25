@@ -6,27 +6,27 @@ type LogoProps = {
   size?: 'sm' | 'md' | 'lg';
 };
 
-const sizeMap = {
-  sm: { icon: 'size-6', text: 'text-sm' },
-  md: { icon: 'size-8', text: 'text-base' },
-  lg: { icon: 'size-10', text: 'text-lg' },
-} as const;
 
-export function Logo({ className, showText = true, size = 'md' }: LogoProps) {
-  const s = sizeMap[size];
+export function Logo({ className, size = 'md' }: LogoProps) {
+  const sizeStyles = {
+    sm: { icon: 'h-6', text: 'text-lg' },
+    md: { icon: 'h-8', text: 'text-xl' },
+    lg: { icon: 'h-12', text: 'text-3xl' },
+  }[size];
+
   return (
     <div className={cn('flex items-center gap-2', className)}>
-      <img src="/logo.png" alt="CAREER AI" className={cn('rounded-md', s.icon)} />
-      {showText && (
-        <span
-          className={cn(
-            'font-semibold tracking-tight text-slate-900 dark:text-slate-50',
-            s.text,
-          )}
-        >
-          CAREER <span className="text-brand-600 dark:text-brand-400">AI</span>
-        </span>
-      )}
+      <img 
+        src="/logo.png" 
+        alt="Career AI" 
+        className={cn('w-auto object-contain', sizeStyles.icon)} 
+      />
+      <span className={cn(
+        'font-bold tracking-tight text-slate-900 dark:text-slate-50',
+        sizeStyles.text
+      )}>
+        Career <span className="text-teal-500">AI</span>
+      </span>
     </div>
   );
 }

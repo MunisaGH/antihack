@@ -9,7 +9,7 @@ export const api: AxiosInstance = axios.create({
 
 function getStoredLang(): 'uz' | 'ru' {
   try {
-    const stored = localStorage.getItem('mediik.lang');
+    const stored = localStorage.getItem('career_ai.lang');
     if (stored === 'uz' || stored === 'ru') return stored;
   } catch {
     // noop

@@ -23,7 +23,7 @@ void i18n
     detection: {
       order: ['localStorage', 'navigator', 'htmlTag'],
       caches: ['localStorage'],
-      lookupLocalStorage: 'mediik.lang',
+      lookupLocalStorage: 'career_ai.lang',
     },
   });
 

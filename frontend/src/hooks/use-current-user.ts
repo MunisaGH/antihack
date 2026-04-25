@@ -6,10 +6,10 @@ export function useCurrentUser(): StoredUser | null {
 
   useEffect(() => {
     const handler = () => setUser(authStorage.getUser());
-    window.addEventListener('mediik:auth-changed', handler);
+    window.addEventListener('career_ai:auth-changed', handler);
     window.addEventListener('storage', handler);
     return () => {
-      window.removeEventListener('mediik:auth-changed', handler);
+      window.removeEventListener('career_ai:auth-changed', handler);
       window.removeEventListener('storage', handler);
     };
   }, []);

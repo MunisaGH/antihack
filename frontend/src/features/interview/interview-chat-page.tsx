@@ -15,6 +15,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/cn';
 import type { InterviewMessage, InterviewSessionStatus } from '@/types/api';
 
+import { PsychologicalTestPage, PsychologicalTestResults } from './psychological-test-page';
+
 type ChatMessage = InterviewMessage;
 
 // 3 daqiqa harakatsiz bo'lsa — sessiyani chiqib ketdi deb belgilaymiz
@@ -23,6 +25,63 @@ const INACTIVITY_TIMEOUT_MS = 3 * 60 * 1000;
 export function InterviewChatPage() {
   const { id = '' } = useParams<{ id: string }>();
   const applicationId = Number(id);
+  const [proceedToChat, setProceedToChat] = useState(false);
+
+  const statusQuery = useQuery({
+    queryKey: ['application-status', applicationId],
+    queryFn: () => interviewApi.getStatus(applicationId),
+    enabled: Number.isFinite(applicationId),
+  });
+
+  if (statusQuery.isLoading) {
+    return (
+      <div className="flex min-h-svh items-center justify-center">
+        <Loader2 className="size-6 animate-spin text-brand-500" />
+      </div>
+    );
+  }
+
+  if (statusQuery.isError) {
+    return (
+      <div className="flex min-h-svh items-center justify-center">
+        <Card className="max-w-md">
+          <CardContent className="p-6 text-center">
+            <AlertTriangle className="mx-auto mb-3 size-10 text-amber-500" />
+            <p className="text-sm text-slate-600 dark:text-slate-300">
+              Ma'lumotlarni yuklab bo'lmadi.
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
+  const { status, psychological_test_done, psychological_test_results } = statusQuery.data?.data || {};
+
+  // Agar test qilinmagan bo'lsa, avval testni ko'rsatamiz
+  if (!psychological_test_done && status === 'interview_stage') {
+    return (
+      <PsychologicalTestPage
+        applicationId={applicationId}
+        onComplete={() => statusQuery.refetch()}
+      />
+    );
+  }
+
+  // Test tugagan, lekin hali chatga o'tilmagan bo'lsa
+  if (psychological_test_done && !proceedToChat) {
+    return (
+      <PsychologicalTestResults 
+        results={psychological_test_results} 
+        onProceed={() => setProceedToChat(true)} 
+      />
+    );
+  }
+
+  return <InterviewChat applicationId={applicationId} />;
+}
+
+function InterviewChat({ applicationId }: { applicationId: number }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();

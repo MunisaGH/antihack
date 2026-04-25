@@ -1,6 +1,6 @@
-const TOKEN_KEY = 'mediik.token';
-const REFRESH_KEY = 'mediik.refresh';
-const USER_KEY = 'mediik.user';
+const TOKEN_KEY = 'career_ai.token';
+const REFRESH_KEY = 'career_ai.refresh';
+const USER_KEY = 'career_ai.user';
 
 export type StoredUser = {
   id: number;
@@ -36,13 +36,13 @@ export const authStorage = {
   },
   setUser(user: StoredUser): void {
     localStorage.setItem(USER_KEY, JSON.stringify(user));
-    window.dispatchEvent(new Event('mediik:auth-changed'));
+    window.dispatchEvent(new Event('career_ai:auth-changed'));
   },
   clear(): void {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem(REFRESH_KEY);
     localStorage.removeItem(USER_KEY);
-    window.dispatchEvent(new Event('mediik:auth-changed'));
+    window.dispatchEvent(new Event('career_ai:auth-changed'));
   },
   isTokenValid(): boolean {
     const token = this.getToken();

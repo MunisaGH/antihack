@@ -1,0 +1,1885 @@
+openapi: 3.0.3
+info:
+  title: AI Recruiting Platform API
+  version: 1.0.0
+  description: "\n    # AI Recruiting Platform API\n    \n    Bu platforma ish beruvchilar\
+    \ va ish qidiruvchilar o'rtasida AI yordamida vakansiyalar va arizalarni boshqarish\
+    \ uchun yaratilgan.\n    \n    ## Asosiy funksiyalar:\n    - **Authentication**:\
+    \ JWT token orqali autentifikatsiya\n    - **Profile Management**: User profil\
+    \ boshqaruvi\n    - **Vacancy Management**: Vakansiyalar boshqaruvi\n    - **Application\
+    \ Management**: Arizalar boshqaruvi\n    - **AI Analysis**: AI yordamida resume\
+    \ va interview tahlili\n    - **Notifications**: Bildirishnomalar\n    - **Analytics**:\
+    \ Statistikalar va hisobotlar\n    \n    ## Autentifikatsiya:\n    Barcha endpointlar\
+    \ (public endpointlar bundan mustasno) JWT token talab qiladi.\n    Token olish\
+    \ uchun `/api/auth/login/` endpointidan foydalaning.\n    \n    ## Public Endpoints:\n\
+    \    - `/api/public/vacancies/` - Vakansiyalar ro'yxati\n    - `/api/public/vacancy/{unique_link}/`\
+    \ - Vakansiya ma'lumotlari\n    - `/api/public/stats/` - Platform statistikasi\n\
+    \    - `/api/public/submit_application/` - Ariza yuborish\n    "
+paths:
+  /api/ai/test_ai/:
+    post:
+      operationId: ai_test_ai_create
+      description: AI service ni test qilish (development uchun)
+      summary: Test AI analysis
+      tags:
+      - AI
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TestAIRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TestAIRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TestAIRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: AI analysis result
+          description: ''
+  /api/analytics/analytics/:
+    get:
+      operationId: analytics_analytics_retrieve
+      description: Employer analytics ma'lumotlari
+      summary: Get analytics
+      tags:
+      - Analytics
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Analytics data
+          description: ''
+  /api/analytics/dashboard/:
+    get:
+      operationId: analytics_dashboard_retrieve
+      description: Employer dashboard statistikasi
+      summary: Get dashboard stats
+      tags:
+      - Analytics
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Dashboard statistics
+          description: ''
+  /api/applications/:
+    get:
+      operationId: applications_list
+      description: Employer arizalarini olish
+      summary: List applications
+      tags:
+      - Applications
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Application'
+          description: ''
+    post:
+      operationId: applications_create
+      tags:
+      - applications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+          description: ''
+  /api/applications/{id}/:
+    get:
+      operationId: applications_retrieve
+      description: Ariza ma'lumotlarini olish
+      summary: Get application
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Application ID
+        required: true
+      tags:
+      - Applications
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+          description: ''
+    put:
+      operationId: applications_update
+      description: Ariza ma'lumotlarini yangilash
+      summary: Update application
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Application ID
+        required: true
+      tags:
+      - Applications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ApplicationRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+          description: ''
+    patch:
+      operationId: applications_partial_update
+      description: Ariza ma'lumotlarini qisman yangilash
+      summary: Partial update application
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Application ID
+        required: true
+      tags:
+      - Applications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedApplicationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedApplicationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedApplicationRequest'
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Application'
+          description: ''
+    delete:
+      operationId: applications_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this application.
+        required: true
+      tags:
+      - applications
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '204':
+          description: No response body
+  /api/applications/generate_interview_questions/:
+    post:
+      operationId: applications_generate_interview_questions_create
+      description: AI orqali interview savollari generate qilish
+      summary: Generate interview questions
+      tags:
+      - Applications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateInterviewQuestionsRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GenerateInterviewQuestionsRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GenerateInterviewQuestionsRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Interview questions generated
+          description: ''
+  /api/auth/login/:
+    post:
+      operationId: auth_login_create
+      description: JWT token bilan autentifikatsiya qilish
+      summary: Employer login
+      tags:
+      - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Login successful
+                examples:
+                - success: true
+                  message: Login successful
+                  token: eyJ0eXAiOiJKV1QiLCJhbGc...
+                  refresh_token: eyJ0eXAiOiJKV1QiLCJhbGc...
+                  user:
+                    id: 1
+                    username: employer1
+                    email: employer@example.com
+                    full_name: John Doe
+                    phone: '+998901234567'
+          description: ''
+  /api/auth/logout/:
+    post:
+      operationId: auth_logout_create
+      description: Token blacklist qilish
+      summary: User logout
+      tags:
+      - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LogoutRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Logout successful
+          description: ''
+  /api/auth/refresh/:
+    post:
+      operationId: auth_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - auth
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefreshRequest'
+        required: true
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+  /api/notifications/:
+    get:
+      operationId: notifications_list
+      description: Foydalanuvchi bildirishnomalarini olish
+      summary: List notifications
+      tags:
+      - Notifications
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+          description: ''
+  /api/notifications/{id}/:
+    get:
+      operationId: notifications_retrieve
+      description: Bildirishnoma ma'lumotlarini olish
+      summary: Get notification
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Notification ID
+        required: true
+      tags:
+      - Notifications
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: ''
+  /api/notifications/{id}/mark_read/:
+    post:
+      operationId: notifications_mark_read_create
+      description: Bildirishnomani o'qilgan deb belgilash
+      summary: Mark notification as read
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: Notification ID
+        required: true
+      tags:
+      - Notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Notification marked as read
+          description: ''
+  /api/notifications/mark_all_read/:
+    post:
+      operationId: notifications_mark_all_read_create
+      description: Barcha bildirishnomalarni o'qilgan deb belgilash
+      summary: Mark all notifications as read
+      tags:
+      - Notifications
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: All notifications marked as read
+          description: ''
+  /api/profile/:
+    get:
+      operationId: profile_list
+      description: User profile management
+      tags:
+      - profile
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserProfile'
+          description: ''
+  /api/profile/{id}/:
+    get:
+      operationId: profile_retrieve
+      description: Joriy foydalanuvchi profilini olish
+      summary: Get user profile
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - Profile
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+    put:
+      operationId: profile_update
+      description: Foydalanuvchi profilini to'liq yangilash
+      summary: Update user profile
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - Profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserProfileRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserProfileRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserProfileRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+    patch:
+      operationId: profile_partial_update
+      description: Foydalanuvchi profilini qisman yangilash
+      summary: Partial update user profile
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - Profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUserProfileRequest'
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+  /api/profile/change_password/:
+    post:
+      operationId: profile_change_password_create
+      description: Parolni o'zgartirish
+      summary: Change password
+      tags:
+      - Profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Password changed successfully
+          description: ''
+  /api/profile/upload_avatar/:
+    post:
+      operationId: profile_upload_avatar_create
+      description: Avatar rasm yuklash
+      summary: Upload avatar
+      tags:
+      - Profile
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UploadAvatarRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UploadAvatarRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+  /api/public/stats/:
+    get:
+      operationId: public_stats_retrieve
+      description: Platform statistikasi
+      summary: Get platform statistics
+      tags:
+      - Public
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Platform statistics
+          description: ''
+  /api/public/submit_application/:
+    post:
+      operationId: public_submit_application_create
+      description: Public application yuborish
+      summary: Submit application
+      tags:
+      - Public
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PublicApplicationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PublicApplicationRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                description: Application submitted
+          description: ''
+  /api/public/submit_application_with_ai/:
+    post:
+      operationId: public_submit_application_with_ai_create
+      description: Application yuborish va AI analysis
+      summary: Submit application with AI
+      tags:
+      - Public
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PublicApplicationRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PublicApplicationRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                description: Application processed
+          description: ''
+  /api/public/submit_contact_message/:
+    post:
+      operationId: public_submit_contact_message_create
+      description: Aloqa xabari yuborish
+      summary: Submit contact message
+      tags:
+      - Public
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactMessageRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ContactMessageRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ContactMessageRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContactMessage'
+          description: ''
+  /api/public/submit_interview_answers/:
+    post:
+      operationId: public_submit_interview_answers_create
+      description: Interview javoblari va evaluation
+      summary: Submit interview answers
+      tags:
+      - Public
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterviewSubmissionRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/InterviewSubmissionRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/InterviewSubmissionRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Interview completed
+          description: ''
+  /api/public/submit_resume_form/:
+    post:
+      operationId: public_submit_resume_form_create
+      description: Resume form orqali ariza berish
+      summary: Submit resume form
+      tags:
+      - Public
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitResumeFormRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SubmitResumeFormRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SubmitResumeFormRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                description: Application submitted
+          description: ''
+  /api/public/vacancies/:
+    get:
+      operationId: public_vacancies_retrieve
+      description: Public vakansiyalar ro'yxati
+      summary: List public vacancies
+      parameters:
+      - in: query
+        name: experience_min
+        schema:
+          type: integer
+        description: Minimum experience
+      - in: query
+        name: location
+        schema:
+          type: string
+        description: Location filter
+      - in: query
+        name: page
+        schema:
+          type: integer
+        description: Page number
+      - in: query
+        name: salary_min
+        schema:
+          type: number
+          format: double
+        description: Minimum salary
+      - in: query
+        name: work_type
+        schema:
+          type: string
+        description: Work type filter
+      tags:
+      - Public
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                description: Public vacancies list
+          description: ''
+  /api/public/vacancy/{unique_link}/:
+    get:
+      operationId: public_vacancy_retrieve
+      description: Unique link orqali vakansiya ma'lumotlarini olish
+      summary: Get public vacancy detail
+      parameters:
+      - in: path
+        name: unique_link
+        schema:
+          type: string
+        required: true
+      tags:
+      - Public
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublicVacancy'
+          description: ''
+  /api/vacancies/:
+    get:
+      operationId: vacancies_list
+      description: Employer vakansiyalarini olish
+      summary: List vacancies
+      tags:
+      - Vacancies
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vacancy'
+          description: ''
+    post:
+      operationId: vacancies_create
+      description: Yangi vakansiya yaratish
+      summary: Create vacancy
+      tags:
+      - Vacancies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VacancyCreateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VacancyCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VacancyCreateRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vacancy'
+          description: ''
+  /api/vacancies/{id}/:
+    get:
+      operationId: vacancies_retrieve
+      description: Vakansiya ma'lumotlarini olish
+      summary: Get vacancy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: Vacancy UUID
+        required: true
+      tags:
+      - Vacancies
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vacancy'
+          description: ''
+    put:
+      operationId: vacancies_update
+      description: Vakansiya ma'lumotlarini yangilash
+      summary: Update vacancy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: Vacancy UUID
+        required: true
+      tags:
+      - Vacancies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VacancyCreateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VacancyCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VacancyCreateRequest'
+        required: true
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vacancy'
+          description: ''
+    patch:
+      operationId: vacancies_partial_update
+      description: Vakansiya ma'lumotlarini qisman yangilash
+      summary: Partial update vacancy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: Vacancy UUID
+        required: true
+      tags:
+      - Vacancies
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVacancyCreateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVacancyCreateRequest'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVacancyCreateRequest'
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vacancy'
+          description: ''
+    delete:
+      operationId: vacancies_destroy
+      description: Vakansiyani o'chirish
+      summary: Delete vacancy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: Vacancy UUID
+        required: true
+      tags:
+      - Vacancies
+      security:
+      - jwtAuth: []
+      - Bearer: []
+      responses:
+        '204':
+          content:
+            application/json:
+              schema:
+                description: Vacancy deleted
+          description: ''
+components:
+  schemas:
+    Application:
+      type: object
+      description: Application serializer
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        vacancy:
+          type: string
+          format: uuid
+        vacancy_title:
+          type: string
+          readOnly: true
+        company_name:
+          type: string
+          readOnly: true
+        full_name:
+          type: string
+          maxLength: 200
+        phone:
+          type: string
+          maxLength: 20
+        age:
+          type: integer
+          nullable: true
+        address:
+          type: string
+          maxLength: 300
+        resume_file:
+          type: string
+          format: uri
+          nullable: true
+        resume_text:
+          type: string
+        resume_generated:
+          type: boolean
+        ai_analysis_result: {}
+        compatibility_score:
+          type: integer
+        ai_strengths: {}
+        ai_weaknesses: {}
+        ai_recommendations: {}
+        interview_answers: {}
+        interview_analysis: {}
+        interview_score:
+          type: integer
+        status:
+          $ref: '#/components/schemas/ApplicationStatusEnum'
+        final_score:
+          type: integer
+        notes:
+          type: string
+        applied_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        reviewed_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - full_name
+      - phone
+      - status
+      - vacancy
+    ApplicationRequest:
+      type: object
+      description: Application serializer
+      properties:
+        vacancy:
+          type: string
+          format: uuid
+        full_name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        phone:
+          type: string
+          minLength: 1
+          maxLength: 20
+        age:
+          type: integer
+          nullable: true
+        address:
+          type: string
+          maxLength: 300
+        resume_file:
+          type: string
+          format: binary
+          nullable: true
+        resume_text:
+          type: string
+        resume_generated:
+          type: boolean
+        ai_analysis_result: {}
+        compatibility_score:
+          type: integer
+        ai_strengths: {}
+        ai_weaknesses: {}
+        ai_recommendations: {}
+        interview_answers: {}
+        interview_analysis: {}
+        interview_score:
+          type: integer
+        status:
+          $ref: '#/components/schemas/ApplicationStatusEnum'
+        final_score:
+          type: integer
+        notes:
+          type: string
+      required:
+      - full_name
+      - phone
+      - status
+      - vacancy
+    ApplicationStatusEnum:
+      enum:
+      - pending
+      - ai_analyzing
+      - rejected_resume
+      - interview_stage
+      - rejected_interview
+      - accepted
+      - hired
+      type: string
+      description: |-
+        * `pending` - Kutilmoqda
+        * `ai_analyzing` - AI tahlil qilinmoqda
+        * `rejected_resume` - Resume rad qilindi
+        * `interview_stage` - Suhbat bosqichida
+        * `rejected_interview` - Suhbat rad qilindi
+        * `accepted` - Qabul qilindi
+        * `hired` - Ishga qabul qilindi
+    ChangePasswordRequest:
+      type: object
+      description: Parolni o'zgartirish uchun serializer
+      properties:
+        old_password:
+          type: string
+          writeOnly: true
+          minLength: 1
+        new_password:
+          type: string
+          writeOnly: true
+          minLength: 8
+      required:
+      - new_password
+      - old_password
+    CompanyRoleEnum:
+      enum:
+      - admin
+      - staff
+      type: string
+      description: |-
+        * `admin` - Administrator
+        * `staff` - Staff
+    ContactMessage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 150
+        phone:
+          type: string
+          maxLength: 30
+        message:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - name
+      - phone
+    ContactMessageRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 150
+        phone:
+          type: string
+          minLength: 1
+          maxLength: 30
+        message:
+          type: string
+      required:
+      - name
+      - phone
+    GenerateInterviewQuestionsRequest:
+      type: object
+      description: Generate interview questions serializer
+      properties:
+        application_id:
+          type: string
+          format: uuid
+      required:
+      - application_id
+    InterviewAnswerRequest:
+      type: object
+      description: Interview answer serializer
+      properties:
+        question_id:
+          type: integer
+        answer:
+          type: string
+          minLength: 1
+      required:
+      - answer
+      - question_id
+    InterviewSubmissionRequest:
+      type: object
+      description: Interview submission serializer
+      properties:
+        application_id:
+          type: integer
+        answers:
+          type: array
+          items:
+            $ref: '#/components/schemas/InterviewAnswerRequest'
+      required:
+      - answers
+      - application_id
+    LoginRequest:
+      type: object
+      description: Login serializer
+      properties:
+        username:
+          type: string
+          minLength: 1
+        password:
+          type: string
+          writeOnly: true
+          minLength: 1
+      required:
+      - password
+      - username
+    LogoutRequest:
+      type: object
+      description: Logout serializer
+      properties:
+        refresh_token:
+          type: string
+          minLength: 1
+      required:
+      - refresh_token
+    Notification:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        body:
+          type: string
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        is_read:
+          type: boolean
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        read_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - title
+    NotificationRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+        body:
+          type: string
+        type:
+          $ref: '#/components/schemas/TypeEnum'
+        read_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - title
+    PatchedApplicationRequest:
+      type: object
+      description: Application serializer
+      properties:
+        vacancy:
+          type: string
+          format: uuid
+        full_name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        phone:
+          type: string
+          minLength: 1
+          maxLength: 20
+        age:
+          type: integer
+          nullable: true
+        address:
+          type: string
+          maxLength: 300
+        resume_file:
+          type: string
+          format: binary
+          nullable: true
+        resume_text:
+          type: string
+        resume_generated:
+          type: boolean
+        ai_analysis_result: {}
+        compatibility_score:
+          type: integer
+        ai_strengths: {}
+        ai_weaknesses: {}
+        ai_recommendations: {}
+        interview_answers: {}
+        interview_analysis: {}
+        interview_score:
+          type: integer
+        status:
+          $ref: '#/components/schemas/ApplicationStatusEnum'
+        final_score:
+          type: integer
+        notes:
+          type: string
+    PatchedUserProfileRequest:
+      type: object
+      description: User profile serializer
+      properties:
+        username:
+          type: string
+          minLength: 1
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        full_name:
+          type: string
+          maxLength: 200
+        phone:
+          type: string
+          maxLength: 20
+        avatar:
+          type: string
+          format: binary
+          nullable: true
+        is_active:
+          type: boolean
+        company_name:
+          type: string
+          maxLength: 200
+        company_location:
+          type: string
+          maxLength: 200
+        company_role:
+          $ref: '#/components/schemas/CompanyRoleEnum'
+    PatchedVacancyCreateRequest:
+      type: object
+      description: Vacancy yaratish uchun serializer
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+        description:
+          type: string
+          minLength: 1
+        requirements:
+          type: string
+          minLength: 1
+        responsibilities:
+          type: string
+          minLength: 1
+        work_type:
+          $ref: '#/components/schemas/WorkTypeEnum'
+        work_schedule:
+          $ref: '#/components/schemas/WorkScheduleEnum'
+        salary_min:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+        salary_max:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+        location:
+          type: string
+          minLength: 1
+          maxLength: 200
+        experience_years:
+          type: integer
+        experience_months:
+          type: integer
+        ai_criteria: {}
+        ai_prompt:
+          type: string
+        min_match_score:
+          type: integer
+        status:
+          $ref: '#/components/schemas/Status9baEnum'
+    PublicApplicationRequest:
+      type: object
+      description: Public application serializer (no auth)
+      properties:
+        vacancy:
+          type: string
+          format: uuid
+        full_name:
+          type: string
+          minLength: 1
+          maxLength: 200
+        phone:
+          type: string
+          minLength: 1
+          maxLength: 20
+        age:
+          type: integer
+          nullable: true
+        address:
+          type: string
+          maxLength: 300
+        resume_file:
+          type: string
+          format: binary
+          nullable: true
+      required:
+      - full_name
+      - phone
+      - vacancy
+    PublicVacancy:
+      type: object
+      description: Public vacancy serializer (no auth)
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        requirements:
+          type: string
+        responsibilities:
+          type: string
+        work_type:
+          $ref: '#/components/schemas/WorkTypeEnum'
+        work_schedule:
+          $ref: '#/components/schemas/WorkScheduleEnum'
+        salary_min:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+        salary_max:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+        location:
+          type: string
+          maxLength: 200
+        experience_years:
+          type: integer
+        experience_months:
+          type: integer
+        company_name:
+          type: string
+          readOnly: true
+        views_count:
+          type: integer
+        applications_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - description
+      - location
+      - requirements
+      - responsibilities
+      - title
+    Status9baEnum:
+      enum:
+      - active
+      - archived
+      type: string
+      description: |-
+        * `active` - Faol
+        * `archived` - Arxivlangan
+    SubmitResumeFormRequest:
+      type: object
+      description: Submit resume form serializer
+      properties:
+        vacancy_id:
+          type: string
+          format: uuid
+        form_data: {}
+      required:
+      - form_data
+      - vacancy_id
+    TestAIRequest:
+      type: object
+      description: Test AI serializer
+      properties:
+        resume_text:
+          type: string
+          minLength: 1
+        vacancy_id:
+          type: string
+          format: uuid
+      required:
+      - resume_text
+      - vacancy_id
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - refresh
+    TokenRefreshRequest:
+      type: object
+      properties:
+        refresh:
+          type: string
+          minLength: 1
+      required:
+      - refresh
+    TypeEnum:
+      enum:
+      - info
+      - success
+      - warning
+      - error
+      type: string
+      description: |-
+        * `info` - Info
+        * `success` - Success
+        * `warning` - Warning
+        * `error` - Error
+    UploadAvatarRequest:
+      type: object
+      description: Upload avatar serializer
+      properties:
+        avatar:
+          type: string
+          format: binary
+      required:
+      - avatar
+    UserProfile:
+      type: object
+      description: User profile serializer
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        full_name:
+          type: string
+          maxLength: 200
+        phone:
+          type: string
+          maxLength: 20
+        avatar:
+          type: string
+          format: uri
+          nullable: true
+        is_active:
+          type: boolean
+        company_name:
+          type: string
+          maxLength: 200
+        company_location:
+          type: string
+          maxLength: 200
+        company_role:
+          $ref: '#/components/schemas/CompanyRoleEnum'
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - username
+    UserProfileRequest:
+      type: object
+      description: User profile serializer
+      properties:
+        username:
+          type: string
+          minLength: 1
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        full_name:
+          type: string
+          maxLength: 200
+        phone:
+          type: string
+          maxLength: 20
+        avatar:
+          type: string
+          format: binary
+          nullable: true
+        is_active:
+          type: boolean
+        company_name:
+          type: string
+          maxLength: 200
+        company_location:
+          type: string
+          maxLength: 200
+        company_role:
+          $ref: '#/components/schemas/CompanyRoleEnum'
+      required:
+      - username
+    Vacancy:
+      type: object
+      description: Vacancy serializer
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        employer:
+          type: integer
+        employer_name:
+          type: string
+          readOnly: true
+        company_name:
+          type: string
+          readOnly: true
+        title:
+          type: string
+          maxLength: 200
+        description:
+          type: string
+        requirements:
+          type: string
+        responsibilities:
+          type: string
+        work_type:
+          $ref: '#/components/schemas/WorkTypeEnum'
+        work_schedule:
+          $ref: '#/components/schemas/WorkScheduleEnum'
+        salary_min:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+        salary_max:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+        location:
+          type: string
+          maxLength: 200
+        experience_years:
+          type: integer
+        experience_months:
+          type: integer
+        ai_criteria: {}
+        ai_prompt:
+          type: string
+        interview_questions: {}
+        min_match_score:
+          type: integer
+        unique_link:
+          type: string
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/Status9baEnum'
+        views_count:
+          type: integer
+          readOnly: true
+        applications_count:
+          type: integer
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - description
+      - employer
+      - location
+      - requirements
+      - responsibilities
+      - status
+      - title
+    VacancyCreateRequest:
+      type: object
+      description: Vacancy yaratish uchun serializer
+      properties:
+        title:
+          type: string
+          minLength: 1
+          maxLength: 200
+        description:
+          type: string
+          minLength: 1
+        requirements:
+          type: string
+          minLength: 1
+        responsibilities:
+          type: string
+          minLength: 1
+        work_type:
+          $ref: '#/components/schemas/WorkTypeEnum'
+        work_schedule:
+          $ref: '#/components/schemas/WorkScheduleEnum'
+        salary_min:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+        salary_max:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+          nullable: true
+        location:
+          type: string
+          minLength: 1
+          maxLength: 200
+        experience_years:
+          type: integer
+        experience_months:
+          type: integer
+        ai_criteria: {}
+        ai_prompt:
+          type: string
+        min_match_score:
+          type: integer
+        status:
+          $ref: '#/components/schemas/Status9baEnum'
+      required:
+      - description
+      - location
+      - requirements
+      - responsibilities
+      - title
+    WorkScheduleEnum:
+      enum:
+      - full-time
+      - part-time
+      - contract
+      type: string
+      description: |-
+        * `full-time` - To'liq kunlik
+        * `part-time` - Yarim kunlik
+        * `contract` - Shartnoma
+    WorkTypeEnum:
+      enum:
+      - remote
+      - office
+      - hybrid
+      type: string
+      description: |-
+        * `remote` - Masofaviy
+        * `office` - Ofisda
+        * `hybrid` - Aralash
+  securitySchemes:
+    Bearer:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+servers:
+- url: http://localhost:8000
+  description: Development server
+tags:
+- name: Authentication
+  description: Autentifikatsiya endpointlari
+- name: Profile
+  description: User profil boshqaruvi
+- name: Notifications
+  description: Bildirishnomalar
+- name: Vacancies
+  description: Vakansiyalar boshqaruvi
+- name: Applications
+  description: Arizalar boshqaruvi
+- name: Analytics
+  description: Statistikalar va hisobotlar
+- name: Public
+  description: Public endpointlar (autentifikatsiya talab qilmaydi)
+- name: AI
+  description: AI test endpointlari

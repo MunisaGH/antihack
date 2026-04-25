@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Bot, FileText, History, MessageSquare, Phone, Sparkles, Trash2, User, XCircle } from 'lucide-react';
+import { Bot, FileText, History, MessageSquare, Phone, Sparkles, Trash2, User, Users, XCircle, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
@@ -57,6 +57,24 @@ export function ApplicationDetailPage() {
     queryKey: ['applications', applicationId],
     queryFn: () => applicationsApi.get(applicationId),
     enabled: Number.isFinite(applicationId),
+  });
+
+  // Fetch all applications to check for relatives
+  const { data: allApps } = useQuery({
+    queryKey: ['applications'],
+    queryFn: () => applicationsApi.list(),
+  });
+
+  // Calculate potential relatives
+  const potentialRelatives = (allApps || []).filter((other) => {
+    if (!app || other.id === app.id) return false;
+    
+    // Extract words from names, ignoring small words and case
+    const currentNameParts = app.full_name.toLowerCase().split(' ').filter(p => p.length > 3);
+    const otherNameParts = other.full_name.toLowerCase().split(' ').filter(p => p.length > 3);
+    
+    // Check if any significant word (like a last name) matches
+    return currentNameParts.some(part => otherNameParts.includes(part));
   });
 
   const updateStatus = useMutation({
@@ -238,6 +256,14 @@ export function ApplicationDetailPage() {
               </span>
             )}
           </TabsTrigger>
+          <TabsTrigger value="relatives" className={potentialRelatives.length > 0 ? "text-amber-600 dark:text-amber-500" : ""}>
+            <Users className="mr-1 size-4" /> Qarindoshlik
+            {potentialRelatives.length > 0 && (
+              <span className="ml-2 rounded-full bg-amber-100 px-2 py-0.5 text-xs text-amber-700 dark:bg-amber-500/20 dark:text-amber-400">
+                {potentialRelatives.length}
+              </span>
+            )}
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="resume">
@@ -275,12 +301,75 @@ export function ApplicationDetailPage() {
         </TabsContent>
 
         <TabsContent value="interview">
+          {app.psychological_test_results && Object.keys(app.psychological_test_results).length > 0 ? (
+            <Card className="mb-4">
+              <CardContent className="p-6">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between border-b border-slate-200 pb-4 dark:border-slate-800">
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50">Psixologik Test Natijalari</h3>
+                      <p className="text-sm text-slate-500">Baholash darajasi: <strong className="text-brand-600">{app.psychological_test_results.grade}</strong></p>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-3xl font-bold text-brand-600 dark:text-brand-400">{app.psychological_test_results.overall_percentage}%</span>
+                      <p className="text-xs text-slate-500">Umumiy moslik</p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-3">Big Five Ko'rsatkichlari</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {app.psychological_test_results.traits?.map((t: any) => (
+                        <div key={t.trait_id} className="bg-slate-50 dark:bg-slate-900 p-4 rounded-lg border border-slate-100 dark:border-slate-800">
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="font-medium text-slate-700 dark:text-slate-300">{t.name}</span>
+                            <span className="font-bold text-slate-900 dark:text-slate-100">{t.percentage}%</span>
+                          </div>
+                          <div className="h-2 w-full bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
+                            <div className="h-full bg-brand-500 rounded-full" style={{ width: `${t.percentage}%` }}></div>
+                          </div>
+                          <p className="text-xs text-slate-500 mt-2">{t.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {app.psychological_test_results.recommendations?.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-slate-800 dark:text-slate-200 mb-3">Tavsiyalar</h4>
+                      <ul className="space-y-2">
+                        {app.psychological_test_results.recommendations.map((r: string, i: number) => (
+                          <li key={i} className="flex items-start gap-2 text-sm text-slate-600 dark:text-slate-400">
+                            <CheckCircle2 className="size-4 text-brand-500 shrink-0 mt-0.5" />
+                            <span>{r}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card className="mb-4">
+              <CardContent className="p-6">
+                <div className="text-center py-6">
+                  <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-slate-100 text-slate-400 dark:bg-slate-800">
+                    <User className="size-6" />
+                  </div>
+                  <h3 className="mt-4 text-sm font-semibold text-slate-900 dark:text-slate-200">Psixologik test natijalari yo'q</h3>
+                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">Bu nomzod hali psixologik testdan o'tmagan.</p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           <Card>
             <CardContent className="p-6">
               {(!app.interview_messages || app.interview_messages.length === 0) && app.interview_score === 0 ? (
                 <p className="py-6 text-center text-sm text-slate-500 dark:text-slate-400">
                   <Bot className="mx-auto mb-2 size-6" />
-                  Intervyu hali o'tkazilmagan.
+                  Intervyu chat hali o'tkazilmagan.
                 </p>
               ) : (
                 <Tabs defaultValue={app.interview_score > 0 ? 'summary' : 'transcript'}>
@@ -345,6 +434,64 @@ export function ApplicationDetailPage() {
             </CardContent>
           </Card>
         </TabsContent>
+
+        <TabsContent value="relatives">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Users className={potentialRelatives.length > 0 ? "size-5 text-amber-500" : "size-5"} /> Ehtimoliy qarindoshlar tahlili
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {potentialRelatives.length > 0 ? (
+                <div className="space-y-4">
+                  <div className="rounded-md bg-amber-50 p-4 border border-amber-200 dark:bg-amber-500/10 dark:border-amber-500/20">
+                    <div className="flex">
+                      <div className="flex-shrink-0">
+                        <AlertTriangle className="h-5 w-5 text-amber-400" aria-hidden="true" />
+                      </div>
+                      <div className="ml-3">
+                        <h3 className="text-sm font-medium text-amber-800 dark:text-amber-200">
+                          Diqqat: Familiyasi o'xshash nomzodlar topildi
+                        </h3>
+                        <div className="mt-2 text-sm text-amber-700 dark:text-amber-300">
+                          <p>
+                            Quyidagi nomzodlar joriy ariza egasi ({app.full_name}) bilan bir xil familiyaga ega bo'lishi mumkin. Bu nepotizm xavfini bildiradi.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {potentialRelatives.map(relative => (
+                      <div key={relative.id} className="rounded-lg border border-slate-200 p-4 dark:border-slate-800 flex justify-between items-center bg-white dark:bg-slate-900/50">
+                        <div>
+                          <p className="font-medium text-slate-900 dark:text-slate-100">{relative.full_name}</p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">{relative.vacancy_title} • {formatUzDateTime(relative.applied_at)}</p>
+                        </div>
+                        <Button variant="outline" size="sm" onClick={() => navigate(`/applications/${relative.id}`)}>
+                          Ko'rish
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="py-8 text-center">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-500/20 mb-3">
+                    <User className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <h3 className="text-sm font-medium text-slate-900 dark:text-slate-100">Qarindoshlar topilmadi</h3>
+                  <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                    Tizimdagi boshqa nomzodlar orasida {app.full_name} bilan familiyadoshlar aniqlanmadi.
+                  </p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
       </Tabs>
 
       <Dialog open={confirmDelete} onOpenChange={setConfirmDelete}>

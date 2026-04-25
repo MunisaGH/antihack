@@ -11,7 +11,7 @@ type ThemeState = {
   toggle: () => void;
 };
 
-const THEME_STORAGE_KEY = 'mediik.theme';
+const THEME_STORAGE_KEY = 'career_ai.theme';
 
 function getSystemTheme(): ResolvedTheme {
   if (typeof window === 'undefined') return 'light';

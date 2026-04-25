@@ -160,6 +160,7 @@ export type Application = {
     ended_at: string | null;
   } | null;
   interview_score: number;
+  psychological_test_results?: any;
   status: ApplicationStatus;
   status_history: Array<{ status: ApplicationStatus; at: string; by?: string }>;
   final_score: number;
