@@ -1,4 +1,4 @@
-# Load test — Mediik Hiring backend
+# Load test — Career AI backend
 
 ## O'rnatish
 

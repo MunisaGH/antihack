@@ -3,16 +3,16 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: mediik-hiring-backend:latest
-    container_name: mediik-hiring-backend
+    image: career-ai-backend:latest
+    container_name: career-ai-backend
     restart: unless-stopped
     env_file:
       - ./backend/.env.production
     ports:
       - "127.0.0.1:8010:8000"
     volumes:
-      - /var/lib/mediik-hiring/staticfiles:/app/staticfiles
-      - /var/lib/mediik-hiring/media:/app/media
+      - /var/lib/career-ai/staticfiles:/app/staticfiles
+      - /var/lib/career-ai/media:/app/media
     healthcheck:
       test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:8000/api/public/stats/ >/dev/null || exit 1"]
       interval: 30s

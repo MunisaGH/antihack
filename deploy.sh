@@ -1,6 +1,6 @@
 #!/bin/bash
 # ============================================================
-# Mediik Hiring — Production deploy avtomatlashtirish
+# Career AI — Production deploy avtomatlashtirish
 #
 # Birinchi marta: ssh + clone + .env.production yarat + ./deploy.sh
 # Keyin: certbot bilan SSL qo'shing (pastdagi yo'riqnoma)
@@ -30,10 +30,10 @@ info() { echo -e "${BLUE}[i]${NC} $*"; }
 # ------------------------------------------------------------
 # Sozlamalar
 # ------------------------------------------------------------
-REPO_DIR="/opt/mediik-hiring"
+REPO_DIR="/opt/career-ai"
 FRONTEND_DIR="$REPO_DIR/frontend"
-FRONTEND_OUT="/var/www/hiring.mediik.uz"
-NGINX_SITE_NAME="hiring.mediik.uz"
+FRONTEND_OUT="/var/www/career-ai.uz"
+NGINX_SITE_NAME="career-ai.uz"
 NGINX_SITE_SRC="$REPO_DIR/deploy/nginx/$NGINX_SITE_NAME.conf"
 NGINX_SITE_DEST="/etc/nginx/sites-available/$NGINX_SITE_NAME"
 ENV_FILE="$REPO_DIR/backend/.env.production"
@@ -60,7 +60,7 @@ log "Oldindan tekshirish"
 
 if [ ! -d "$REPO_DIR/.git" ]; then
     err "Repo topilmadi: $REPO_DIR"
-    err "Avval: git clone https://github.com/abdulazizDevop/ai-recruiting-platform.git $REPO_DIR"
+    err "Avval: git clone https://github.com/MunisaGH/antihack.git $REPO_DIR"
     exit 1
 fi
 
@@ -161,7 +161,7 @@ if [ ! -f "$NGINX_SITE_DEST" ] || [ "$NGINX_UPDATE" = true ]; then
             echo ""
             warn "SSL hali yo'q. Hozir sayt faqat HTTP'da ishlayapti."
             warn "SSL yoqish uchun:"
-            echo "    sudo certbot --nginx -d $NGINX_SITE_NAME --agree-tos -m admin@mediik.uz --redirect"
+            echo "    sudo certbot --nginx -d $NGINX_SITE_NAME --agree-tos -m admin@career-ai.uz --redirect"
         fi
     else
         err "Nginx config xatosi"

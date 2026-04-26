@@ -1,6 +1,6 @@
 <div align="center">
 
-# Mediik Hiring
+# Career AI
 
 **AI-powered ishga qabul qilish platformasi**
 
@@ -13,7 +13,7 @@ Rezyumeni Google Gemini bilan tahlil qiladi, adaptiv chat-suhbatlar o'tkazadi, n
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-316192.svg)](https://postgresql.org)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-[Sayt](https://hiring.mediik.uz) · [Issues](https://github.com/abdulazizDevop/ai-recruiting-platform/issues)
+[Sayt](https://career-ai.uz) · [Issues](https://github.com/MunisaGH/antihack/issues)
 
 </div>
 
@@ -34,7 +34,7 @@ Rezyumeni Google Gemini bilan tahlil qiladi, adaptiv chat-suhbatlar o'tkazadi, n
 
 ## Loyiha haqida
 
-Mediik Hiring — bir administrator boshqaradigan AI ishga qabul platformasi. Namzodlar ro'yxatdan o'tmaydi, ular vakansiyaga havola orqali kirib, rezyume yuklashadi va AI orqali filtratsiyadan o'tishadi. O'tganlar oynali chat orqali **adaptiv suhbat** topshirishadi — Gemini har bir savolni namzodning rezyumesi, vakansiya darajasi (intern / junior / mid / senior) va oldingi javoblariga qarab tuzadi.
+Career AI — bir administrator boshqaradigan AI ishga qabul platformasi. Nomzodlar ro'yxatdan o'tmaydi, ular vakansiyaga havola orqali kirib, rezyume yuklashadi va AI orqali filtratsiyadan o'tishadi. O'tganlar oynali chat orqali **adaptiv suhbat** topshirishadi — Gemini har bir savolni nomzodning rezyumesi, vakansiya darajasi (intern / junior / mid / senior) va oldingi javoblariga qarab tuzadi.
 
 ### Ish oqimi
 
@@ -136,7 +136,7 @@ ai-recruiting-platform/
 │
 ├── deploy/
 │   └── nginx/
-│       └── hiring.mediik.uz.conf
+│       └── career-ai.uz.conf
 │
 ├── docker-compose.yml            # Backend service
 ├── deploy.sh                     # Avtomatik deploy skripti
@@ -225,8 +225,8 @@ ssh root@YOUR_SERVER_IP
 
 # 2. Loyihani clone qilish
 cd /opt
-git clone https://github.com/abdulazizDevop/ai-recruiting-platform.git mediik-hiring
-cd mediik-hiring
+git clone https://github.com/MunisaGH/antihack.git career-ai
+cd career-ai
 chmod +x deploy.sh backend/entrypoint.sh
 
 # 3. .env.production yaratish
@@ -251,7 +251,7 @@ docker compose exec backend python manage.py createsuperuser
 
 ```bash
 ssh root@YOUR_SERVER_IP
-cd /opt/mediik-hiring
+cd /opt/career-ai
 ./deploy.sh
 ```
 

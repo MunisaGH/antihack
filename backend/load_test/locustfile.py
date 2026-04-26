@@ -1,4 +1,4 @@
-"""Mediik Hiring backend uchun load test.
+"""Career AI backend uchun load test.
 
 Ishlatish:
     pip install locust
