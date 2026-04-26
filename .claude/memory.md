@@ -1,18 +1,16 @@
-# AI Recruiting Platform - Mediik Hiring
+# AI Recruiting Platform - Career AI
 
 ## Maqsad
-AI yordamida ishga yollash (recruiting) platformasi. Mediik kompaniyasi uchun hiring.mediik.uz da deploy qilinadi.
+AI yordamida ishga yollash (recruiting) platformasi. Career AI — career-ai.uz da deploy qilinadi.
 
 ## Tech Stack
 - **Frontend:** TypeScript (.ts/.tsx fayllar!)
-- **AI:** google-genai ga migratsiya (OpenAI dan o'tish rejasi)
-- **Deploy:** hiring.mediik.uz
+- **AI:** google-genai (Gemini)
+- **Deploy:** career-ai.uz
 
 ## Muhim kontekst
-- OpenAI → google-genai migratsiya rejasi mavjud
 - Single-admin soddalashtirilgan tizim
-- UI overhaul rejalashtirilgan
 - Frontend fayllar TypeScript bo'lishi KERAK (JS emas!)
 
 ## Status
-- Modernizatsiya bosqichida
+- Psixologik test (BFI-20) va AI texnik intervyu integratsiyasi tugallandi

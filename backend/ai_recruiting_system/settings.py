@@ -369,7 +369,7 @@ DO_SPACES_ENDPOINT = os.getenv(
 # Shared Space prefiksi — har app o'z papkasida (hiring/, doctors/, ...).
 DO_SPACES_LOCATION = os.getenv("DO_SPACES_LOCATION", "hiring")
 
-# Bunny CDN — scheme bilan to'liq URL (masalan: "https://mediik.b-cdn.net" yoki "https://cdn.mediik.uz")
+# Bunny CDN — scheme bilan to'liq URL (masalan: "https://career-ai.b-cdn.net" yoki "https://cdn.career-ai.uz")
 BUNNY_CDN_URL = os.getenv("BUNNY_CDN_URL", "")
 # Bunny Pull Zone Security → Token Authentication Key
 BUNNY_TOKEN_KEY = os.getenv("BUNNY_TOKEN_KEY", "")
